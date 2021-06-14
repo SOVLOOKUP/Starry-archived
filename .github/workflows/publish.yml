@@ -44,30 +44,35 @@ jobs:
         with:
           name: macos.app
           path: src-tauri/target/release/bundle/macos/*.app
+          retention-days: 1
 
       - name: Upload Release(dmg)
         uses: actions/upload-artifact@v2
         with:
           name: macos.dmg
           path: src-tauri/target/release/bundle/dmg/*.dmg
+          retention-days: 1
           
       - name: Upload Release(deb)
         uses: actions/upload-artifact@v2
         with:
           name: linux.deb
           path: src-tauri/target/release/bundle/deb/*.deb
+          retention-days: 1
           
       - name: Upload Release(AppImage)
         uses: actions/upload-artifact@v2
         with:
           name: linux.AppImage
           path: src-tauri/target/release/bundle/appimage/*.AppImage
+          retention-days: 1
           
       - name: Upload Release(msi)
         uses: actions/upload-artifact@v2
         with:
           name: windows.msi
           path: src-tauri/target/release/bundle/msi/*.msi
+          retention-days: 1
           
   release:
     needs: build
