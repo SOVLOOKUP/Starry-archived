@@ -5,7 +5,6 @@ on:
   pull_request:
     branches: [ master ]
 
-
 jobs:
   publish-tauri:
     strategy:
@@ -21,7 +20,7 @@ jobs:
         with:
           node-version: 16.x
       - name: install Rust stable
-        uses: actions-rs/toolchain@latest
+        uses: actions-rs/toolchain@v1.0.6
         with:
           toolchain: stable
       - name: install webkit2gtk (ubuntu only)
