@@ -40,6 +40,7 @@ jobs:
         run: yarn build
         
       - name: Upload Release(app)
+        if: matrix.platform == 'macos-latest'
         uses: actions/upload-artifact@v2
         with:
           name: macos.app
@@ -47,6 +48,7 @@ jobs:
           retention-days: 1
 
       - name: Upload Release(dmg)
+        if: matrix.platform == 'macos-latest'
         uses: actions/upload-artifact@v2
         with:
           name: macos.dmg
@@ -54,6 +56,7 @@ jobs:
           retention-days: 1
           
       - name: Upload Release(deb)
+        if: matrix.platform == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: linux.deb
@@ -61,6 +64,7 @@ jobs:
           retention-days: 1
           
       - name: Upload Release(AppImage)
+        if: matrix.platform == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: linux.AppImage
@@ -68,6 +72,7 @@ jobs:
           retention-days: 1
           
       - name: Upload Release(msi)
+        if: matrix.platform == 'windows-latest'
         uses: actions/upload-artifact@v2
         with:
           name: windows.msi
