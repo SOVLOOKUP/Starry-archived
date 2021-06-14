@@ -124,8 +124,4 @@ jobs:
             prerelease: true
             title: Latest-Release
             files: |
-              release/*.app
-              release/*.dmg
-              release/*.deb
-              release/*.AppImage
-              release/*.msi
+              release/*
