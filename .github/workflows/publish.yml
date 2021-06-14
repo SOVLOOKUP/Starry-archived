@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [ macos-latest, ubuntu-latest, windows-latest ]
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -43,31 +43,31 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: macos.app
-          path: src-tauri/target/release/bundle/**/*.app
+          path: src-tauri/target/release/bundle/macos/*.app
 
       - name: Upload Release(dmg)
         uses: actions/upload-artifact@v2
         with:
           name: macos.dmg
-          path: src-tauri/target/release/bundle/**/*.dmg
+          path: src-tauri/target/release/bundle/dmg/*.dmg
           
       - name: Upload Release(deb)
         uses: actions/upload-artifact@v2
         with:
           name: linux.deb
-          path: src-tauri/target/release/bundle/**/*.deb
+          path: src-tauri/target/release/bundle/deb/*.deb
           
       - name: Upload Release(AppImage)
         uses: actions/upload-artifact@v2
         with:
           name: linux.AppImage
-          path: src-tauri/target/release/bundle/**/*.AppImage
+          path: src-tauri/target/release/bundle/appimage/*.AppImage
           
       - name: Upload Release(msi)
         uses: actions/upload-artifact@v2
         with:
           name: windows.msi
-          path: src-tauri/target/release/bundle/**/*.msi
+          path: src-tauri/target/release/bundle/msi/*.msi
           
   release:
     needs: build
