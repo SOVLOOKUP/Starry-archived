@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  publish-tauri:
+  build:
     strategy:
       fail-fast: false
       matrix:
@@ -69,13 +69,49 @@ jobs:
           name: windows.msi
           path: src-tauri/target/release/bundle/**/*.msi
           
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Platform ${{ matrix.os }}
+        uses: actions/checkout@v2
+
+      - name: Download Release(app)
+        uses: actions/download-artifact@v2
+        with:
+          name: macos.app
+          path: release
+
+      - name: Download Release(dmg)
+        uses: actions/download-artifact@v2
+        with:
+          name: macos.dmg
+          path: release
           
-      # - uses: tauri-apps/tauri-action@v0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-      #     releaseName: 'App v__VERSION__'
-      #     body: 'See the assets to download this version and install.'
-      #     draft: true
-      #     prerelease: true
+      - name: Download Release(deb)
+        uses: actions/download-artifact@v2
+        with:
+          name: linux.deb
+          path: release
+          
+      - name: Download Release(AppImage)
+        uses: actions/download-artifact@v2
+        with:
+          name: linux.AppImage
+          path: release
+          
+      - name: Download Release(msi)
+        uses: actions/download-artifact@v2
+        with:
+          name: windows.msi
+          path: release
+
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            automatic_release_tag: "latest"
+            prerelease: true
+            title: Latest-Release
+            files: |
+              release/*
