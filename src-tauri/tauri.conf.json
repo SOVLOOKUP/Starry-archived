@@ -12,7 +12,7 @@
       "identifier": "com.tauri.dev",
       "icon": ["assets/app-icon.png"],
       "resources": [],
-      "externalBin": ["/home/sovlookup/桌面/app"],
+      "externalBin": [],
       "copyright": "",
       "category": "DeveloperTool",
       "shortDescription": "",
