@@ -1,4 +1,8 @@
 {
+  "package": {
+    "productName": "starry",
+    "version": "0.1.0"
+  },
   "build": {
     "distDir": "../build",
     "devPath": "../build",
@@ -9,10 +13,16 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
-      "icon": ["assets/app-icon.png"],
+      "identifier": "com.starry.eco",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
       "resources": [],
-      "externalBin": ["/home/sovlookup/桌面/app"],
+      "externalBin": [],
       "copyright": "",
       "category": "DeveloperTool",
       "shortDescription": "",
@@ -25,7 +35,14 @@
         "frameworks": [],
         "minimumSystemVersion": "",
         "useBootstrapper": false,
-        "exceptionDomain": ""
+        "exceptionDomain": "",
+        "signingIdentity": null,
+        "entitlements": null
+      },
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
       }
     },
     "allowlist": {
@@ -41,7 +58,7 @@
       }
     ],
     "security": {
-      "csp": "default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline' 'self'"
+      "csp": "default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
     },
     "updater": {
       "active": false
