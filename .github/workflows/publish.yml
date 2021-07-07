@@ -1,0 +1,129 @@
+name: 'publish'
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Platform ${{ matrix.platform }}
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Disable husky
+        run: npx pinst --disable
+
+      - name: Install Rust stable
+        uses: actions-rs/toolchain@v1.0.6
+        with:
+          toolchain: stable
+
+      - name: Install webkit2gtk (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webkit2gtk-4.0
+
+      - name: Use node_modules cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('package.json') }}
+
+      - name: Install app dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Release
+        run: yarn release
+
+      - name: Upload Release(dmg)
+        if: matrix.platform == 'macos-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos.dmg
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          retention-days: 1
+
+      - name: Upload Release(deb)
+        if: matrix.platform == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux.deb
+          path: src-tauri/target/release/bundle/deb/*.deb
+          retention-days: 1
+
+      - name: Upload Release(AppImage)
+        if: matrix.platform == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux.AppImage
+          path: src-tauri/target/release/bundle/appimage/*.AppImage
+          retention-days: 1
+
+      - name: Upload Release(msi)
+        if: matrix.platform == 'windows-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows.msi
+          path: src-tauri/target/release/bundle/msi/*.msi
+          retention-days: 1
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Platform ${{ matrix.os }}
+        uses: actions/checkout@v2
+
+      - name: Download Release(dmg)
+        uses: actions/download-artifact@v2
+        with:
+          name: macos.dmg
+          path: release
+
+      - name: Download Release(deb)
+        uses: actions/download-artifact@v2
+        with:
+          name: linux.deb
+          path: release
+
+      - name: Download Release(AppImage)
+        uses: actions/download-artifact@v2
+        with:
+          name: linux.AppImage
+          path: release
+
+      - name: Download Release(msi)
+        uses: actions/download-artifact@v2
+        with:
+          name: windows.msi
+          path: release
+
+      - name: Release
+        uses: 'marvinpinto/action-automatic-releases@latest'
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: 'latest'
+          prerelease: true
+          title: Latest-Release
+          files: |
+            release/*.dmg
+            release/*.deb
+            release/*.AppImage
+            release/*.msi
