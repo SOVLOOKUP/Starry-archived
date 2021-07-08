@@ -32,7 +32,7 @@ jobs:
 
       - name: Install tauri-cli
         run: |
-          cargo install tauri-bundler
+          cargo install tauri-cli
       
       - name: Install webkit2gtk (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
