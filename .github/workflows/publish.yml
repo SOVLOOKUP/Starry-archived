@@ -30,6 +30,10 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Install tauri-cli
+        run: |
+          cargo install tauri-bundler
+      
       - name: Install webkit2gtk (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
         run: |
