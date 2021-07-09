@@ -9,10 +9,9 @@
 	$: placeHolder;
 </script>
 
-<div data-tauri-drag-region class="searchBar">
+<div class="searchBar">
 	<div class="searchArea">
 		<input
-			data-tauri-drag-region
 			class="searchInput"
 			type="text"
 			placeholder={placeHolder}
@@ -20,7 +19,7 @@
 		/>
 	</div>
 	<div on:click={clickLogo} class="logo">
-		<img class="logoSVG" alt="logo" src="logo.svg" />
+		<img class="logoSVG" data-tauri-drag-region alt="logo" src="logo.svg" />
 	</div>
 </div>
 
