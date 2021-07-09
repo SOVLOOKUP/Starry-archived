@@ -4,6 +4,7 @@
 
 <svelte:head>
 	<title>Starry</title>
+	<link rel="icon" href="logo.svg" />
 </svelte:head>
 
 <main class="main">
