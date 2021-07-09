@@ -15,6 +15,15 @@
 </main>
 
 <style>
+	@font-face {
+		font-family: HarmonyOS;
+		src: 'HarmonyOS.ttf';
+	}
+	
+	main {
+		font-family: 'HarmonyOS';
+	}
+
 	.background {
 		position: fixed;
 		height: 100%;

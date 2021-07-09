@@ -25,11 +25,6 @@
 </div>
 
 <style>
-	@font-face {
-		font-family: HarmonyOS;
-		src: 'HarmonyOS.ttf';
-	}
-
 	.searchBar {
 		display: flex;
 		user-select: none;
@@ -61,7 +56,6 @@
 		outline-style: none;
 		border: 0px;
 		font-size: 2em;
-		font-family: 'HarmonyOS';
 	}
 
 	.logoSVG {
