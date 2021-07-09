@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	export let placeHolder = 'Hi, Starry✨';
 	export let inputValue = '';
 
-	const clickLogo = (e) => {
+	const clickLogo = (e: MouseEvent) => {
 		console.log(e, inputValue);
 	};
 
