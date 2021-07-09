@@ -8,6 +8,7 @@
 </svelte:head>
 
 <main class="main">
+	<!-- todo: auto find the best size -->
 	<div class="searchBar"><SearchBar /></div>
 
 	<div class="content"><slot /></div>
@@ -31,6 +32,8 @@
 		z-index: -999;
 		top: 0;
 		left: 0;
+		right: 0;
+		bottom: 0;
 		object-fit: cover;
 		width: 100%;
 		border-radius: 20px;

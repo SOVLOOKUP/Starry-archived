@@ -53,11 +53,13 @@
         "title": "Starry",
         "width": 360,
         "height": 640,
-        "resizable": true,
+        "resizable": false,
         "fullscreen": false,
         "decorations":false,
-        "alwaysOnTop": false,
-        "transparent": true
+        "alwaysOnTop": true,
+        "transparent": true,
+        "x": 300,
+        "y": 200
       }
     ],
     "security": {
