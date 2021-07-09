@@ -12,7 +12,7 @@
 
 	<div class="content"><slot /></div>
 
-	<img class="background" alt="back" data-tauri-drag-region src="back.jpg" />
+	<img class="background" data-tauri-drag-region alt="back" src="back.jpg" />
 </main>
 
 <style>

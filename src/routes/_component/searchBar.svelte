@@ -11,12 +11,7 @@
 
 <div class="searchBar">
 	<div class="searchArea">
-		<input
-			class="searchInput"
-			type="text"
-			placeholder={placeHolder}
-			bind:value={inputValue}
-		/>
+		<input class="searchInput" type="text" placeholder={placeHolder} bind:value={inputValue} />
 	</div>
 	<div on:click={clickLogo} class="logo">
 		<img class="logoSVG" data-tauri-drag-region alt="logo" src="logo.svg" />
