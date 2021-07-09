@@ -19,7 +19,7 @@
 		font-family: HarmonyOS;
 		src: 'HarmonyOS.ttf';
 	}
-	
+
 	main {
 		font-family: 'HarmonyOS';
 	}
