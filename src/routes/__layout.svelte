@@ -6,7 +6,7 @@
 	<title>Starry</title>
 </svelte:head>
 
-<main>
+<main class="main">
 	<div class="searchBar"><SearchBar /></div>
 
 	<div class="content"><slot /></div>
@@ -20,7 +20,7 @@
 		src: 'HarmonyOS.ttf';
 	}
 
-	main {
+	.main {
 		font-family: 'HarmonyOS';
 	}
 
