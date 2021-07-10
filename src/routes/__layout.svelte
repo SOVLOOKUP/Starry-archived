@@ -39,5 +39,9 @@
 	.content {
 		position: absolute;
 		top: 3.2em;
+		/* todo: bug:添加了这个鼠标事件会失效，不添加resize会失效 */
+		/* left: 0;
+		right: 0;
+		bottom: 0; */
 	}
 </style>
