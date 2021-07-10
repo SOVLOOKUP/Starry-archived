@@ -1,3 +1,8 @@
+<script type="ts">
+	import Magnet from '$lib/component/magnet/index.svelte';
+</script>
+
 <div>
-	<!-- <img class="background" alt="back" src="back.jpg"/> -->
+	<!-- <button on:click={turnDrag}>click me</button> -->
+	<Magnet />
 </div>

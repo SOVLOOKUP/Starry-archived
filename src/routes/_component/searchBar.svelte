@@ -21,7 +21,6 @@
 <style>
 	.searchBar {
 		display: flex;
-		user-select: none;
 		height: 3.2em;
 		justify-content: center;
 		align-items: center;
