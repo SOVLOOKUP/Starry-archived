@@ -22,6 +22,10 @@
 		]
 	};
 
+	const hide = () => {
+		appWindow.hide();
+	};
+
 	const menu = (e: MouseEvent) => {
 		e.preventDefault();
 
@@ -56,7 +60,7 @@
 			e.preventDefault();
 		}}
 	>
-		<button>磁贴内容块</button>
+		<button on:click={hide}>磁贴内容块</button>
 	</div>
 </div>
 
