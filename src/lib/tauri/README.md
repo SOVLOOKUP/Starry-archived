@@ -1,4 +1,4 @@
-> This is a commonjs mirror package of @tauri-app/api
+> [@tauri-app/api](https://www.npmjs.com/package/@tauri-apps/api)
 >
 > version 1.0.0-beta.4
 >
