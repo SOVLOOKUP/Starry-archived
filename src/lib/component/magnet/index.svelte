@@ -42,7 +42,7 @@
 	};
 
 	// 可被tauri窗口拖拽
-	$: (async () => await appWindow.setResizable(drag))();
+	$: appWindow.setResizable(drag);
 </script>
 
 <div class="magnet" bind:this={magnet} on:contextmenu={menu}>
