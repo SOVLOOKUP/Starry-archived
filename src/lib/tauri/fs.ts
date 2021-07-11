@@ -149,9 +149,6 @@ async function writeFile(file: FsTextFileOption, options: FsOptions = {}): Promi
 	});
 }
 
-/** @ignore */
-const CHUNK_SIZE = 65536;
-
 /**
  * Convert an ArrayBuffer to base64 encoded string.
  *
