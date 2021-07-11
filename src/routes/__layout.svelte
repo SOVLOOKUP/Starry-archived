@@ -21,6 +21,7 @@
 </main>
 
 <style lang="less">
+	// todo:全局通用样式抽取设置
 	@font-face {
 		font-family: HarmonyOS;
 		src: 'HarmonyOS.ttf';
