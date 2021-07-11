@@ -543,14 +543,8 @@ class WindowManager extends WebviewWindowHandle {
 		return invokeTauriCommand({
 			__tauriModule: 'Window',
 			message: {
-				cmd: 'manage',
-				data: {
-					label: this.label,
-					cmd: {
-						type: 'setResizable',
-						payload: resizable
-					}
-				}
+				cmd: 'setResizable',
+				data: resizable
 			}
 		});
 	}

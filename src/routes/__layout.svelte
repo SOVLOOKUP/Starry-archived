@@ -3,7 +3,7 @@
 
 	const searchBarHeight = 3.2;
 	const disableContextMenu = (e: MouseEvent) => {
-		if (!!window.__TAURI__) e.preventDefault();
+		if (!window.__TAURI__) e.preventDefault();
 	};
 </script>
 

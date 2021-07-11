@@ -2,7 +2,7 @@
 	import ContextMenu from './component/menu.svelte';
 	import type { Menu, MenuItem } from './component/menu.svelte';
 	import { once } from 'svelte/internal';
-	import { appWindow } from '$lib/tauri/window';
+	import { appWindow, LogicalSize } from '$lib/tauri/window';
 
 	export let imgURL = 'back.jpg';
 	export let drag = true;
@@ -42,7 +42,7 @@
 	};
 
 	// 可被tauri窗口拖拽
-	$: appWindow.setResizable(drag);
+	$: (async () => await appWindow.setResizable(drag))();
 </script>
 
 <div class="magnet" bind:this={magnet} on:contextmenu={menu}>
