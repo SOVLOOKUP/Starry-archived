@@ -41,10 +41,6 @@
 		menuConfig.Y = e.clientY;
 	};
 
-	const click = (e: MouseEvent) => {
-		console.log(e);
-	};
-
 	// 可被tauri窗口拖拽
 	$: appWindow.setResizable(drag);
 </script>

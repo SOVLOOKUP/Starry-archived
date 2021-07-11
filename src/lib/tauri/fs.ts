@@ -181,8 +181,7 @@ function uint8ArrayToString(arr: Uint8Array): string {
  * @returns A base64 encoded string.
  */
 function arrayBufferToBase64(buffer: ArrayBuffer): string {
-	const str = uint8ArrayToString(new Uint8Array(buffer));
-	return btoa(str);
+	return Buffer.from(buffer).toString('base64');
 }
 
 /**
