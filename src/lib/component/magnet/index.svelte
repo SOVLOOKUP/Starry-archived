@@ -2,7 +2,7 @@
 	import ContextMenu from './component/menu.svelte';
 	import type { Menu, MenuItem } from './component/menu.svelte';
 	import { once } from 'svelte/internal';
-	import { appWindow, LogicalSize } from '$lib/tauri/window';
+	import { appWindow } from '$lib/tauri/window';
 
 	export let imgURL = 'back.jpg';
 	export let drag = true;
