@@ -2,6 +2,7 @@
 	import ContextMenu from './component/menu.svelte';
 	import type { Menu, MenuItem } from './component/menu.svelte';
 	import { once } from 'svelte/internal';
+	import { appWindow } from '$lib/tauri/window';
 
 	export let imgURL = 'back.jpg';
 	export let drag = true;
@@ -14,7 +15,7 @@
 		Y: 0,
 		items: [
 			{
-				name: drag ? '锁定' : '解锁',
+				name: drag ? 'Lock' : 'Unlock',
 				onClick: () => (drag = !drag)
 			},
 			...items
@@ -45,35 +46,45 @@
 	};
 
 	// 可被tauri窗口拖拽
-	$: drag;
+	$: appWindow.setResizable(drag);
 </script>
 
 <div class="magnet" bind:this={magnet} on:contextmenu={menu}>
-	<div
-		class="background"
-		style="background-image: url({imgURL});"
-		data-tauri-drag-region={drag ? '' : 'undragable'}
-	/>
+	<div class="background" style="background-image: url({imgURL});" />
+	{#if drag}
+		<div class="dragRegion" data-tauri-drag-region={drag ? '' : 'undragable'} />
+	{/if}
 </div>
+
 <ContextMenu {menuConfig} />
 
 <style>
 	.magnet {
+		display: flex;
 		height: 100%;
 		width: 100%;
-	}
-
-	.background {
-		user-select: none;
-		position: fixed;
-		height: 100%;
-		width: 100%;
-		z-index: -999;
-		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		border-radius: 20px;
+	}
+
+	.dragRegion {
+		position: absolute;
+		border-radius: 20px;
+		background-color: rgb(255, 255, 255, 0);
+		top: 5px;
+		left: 5px;
+		right: 5px;
+		bottom: 5px;
+	}
+
+	.background {
+		user-select: none;
+		position: absolute;
+		height: 100%;
+		width: 100%;
 		background-size: cover;
+		border-radius: 20px;
 	}
 </style>

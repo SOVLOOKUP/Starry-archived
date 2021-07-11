@@ -19,6 +19,8 @@
 </div>
 
 <style>
+	/* todo:美化动态效果
+	todo:主界面和副界面模式 */
 	.searchBar {
 		display: flex;
 		height: 3.2em;
