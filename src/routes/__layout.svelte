@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SearchBar from './_component/searchBar.svelte';
 
+	const searchBarHeight = 3.2;
 	const disableContextMenu = (e: MouseEvent) => {
 		if (!!window.__TAURI__) e.preventDefault();
 	};
@@ -11,21 +12,21 @@
 	<link rel="icon" href="logo.svg" />
 </svelte:head>
 
-<main on:contextmenu={disableContextMenu} class="main">
+<main on:contextmenu={disableContextMenu}>
 	<!-- todo: auto find the best size -->
 	<!-- todo: 国际化 -->
-	<div class="searchBar"><SearchBar /></div>
+	<div class="searchBar"><SearchBar height={searchBarHeight} /></div>
 
-	<div class="content"><slot /></div>
+	<div class="content" style="top: {searchBarHeight}em;"><slot /></div>
 </main>
 
-<style>
+<style lang="less">
 	@font-face {
 		font-family: HarmonyOS;
 		src: 'HarmonyOS.ttf';
 	}
 
-	.main {
+	main {
 		font-family: 'HarmonyOS';
 	}
 

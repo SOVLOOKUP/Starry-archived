@@ -54,15 +54,29 @@
 	{#if drag}
 		<div class="dragRegion" data-tauri-drag-region={drag ? '' : 'undragable'} />
 	{/if}
+	<div
+		class="content"
+		on:contextmenu={(e) => {
+			e.preventDefault();
+		}}
+	>
+		<button>磁贴内容块</button>
+	</div>
 </div>
 
 <ContextMenu {menuConfig} />
 
 <style>
-	.magnet {
+	.content {
+		position: absolute;
 		display: flex;
+	}
+
+	.magnet {
+		position: absolute;
 		height: 100%;
 		width: 100%;
+		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -80,8 +94,10 @@
 	}
 
 	.background {
+		position: fixed;
 		user-select: none;
-		position: absolute;
+		top: 0;
+		z-index: -999;
 		height: 100%;
 		width: 100%;
 		background-size: cover;

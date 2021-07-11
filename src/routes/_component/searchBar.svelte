@@ -1,15 +1,16 @@
 <script lang="ts">
 	export let placeHolder = 'Hi, Starry✨';
 	export let inputValue = '';
+	export let height = 3.2;
 
 	const clickLogo = (e: MouseEvent) => {
 		console.log(e, inputValue);
 	};
 
-	$: placeHolder;
+	$: [placeHolder, inputValue, height];
 </script>
 
-<div class="searchBar">
+<div class="searchBar" style="height: {height}em;">
 	<div class="searchArea">
 		<input class="searchInput" type="text" placeholder={placeHolder} bind:value={inputValue} />
 	</div>
