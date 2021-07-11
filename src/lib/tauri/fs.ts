@@ -153,27 +153,6 @@ async function writeFile(file: FsTextFileOption, options: FsOptions = {}): Promi
 const CHUNK_SIZE = 65536;
 
 /**
- * Convert an Uint8Array to ascii string.
- *
- * @ignore
- * @param arr
- * @returns An ASCII string.
- */
-function uint8ArrayToString(arr: Uint8Array): string {
-	if (arr.length < CHUNK_SIZE) {
-		return String.fromCharCode.apply(null, Array.from(arr));
-	}
-
-	let result = '';
-	const arrLen = arr.length;
-	for (let i = 0; i < arrLen; i++) {
-		const chunk = arr.subarray(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
-		result += String.fromCharCode.apply(null, Array.from(chunk));
-	}
-	return result;
-}
-
-/**
  * Convert an ArrayBuffer to base64 encoded string.
  *
  * @ignore
