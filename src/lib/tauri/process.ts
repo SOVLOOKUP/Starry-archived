@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-License-Identifier: MIT
 
-import { invokeTauriCommand } from './helpers/tauri'
+import { invokeTauriCommand } from './helpers/tauri';
 
 /**
  * Perform operations on the current process.
@@ -18,13 +18,13 @@ import { invokeTauriCommand } from './helpers/tauri'
  * @returns A promise indicating the success or failure of the operation.
  */
 async function exit(exitCode: number = 0): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Process',
-    message: {
-      cmd: 'exit',
-      exitCode
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Process',
+		message: {
+			cmd: 'exit',
+			exitCode
+		}
+	});
 }
 
 /**
@@ -33,12 +33,12 @@ async function exit(exitCode: number = 0): Promise<void> {
  * @returns A promise indicating the success or failure of the operation.
  */
 async function relaunch(): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Process',
-    message: {
-      cmd: 'relaunch'
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Process',
+		message: {
+			cmd: 'relaunch'
+		}
+	});
 }
 
-export { exit, relaunch }
+export { exit, relaunch };

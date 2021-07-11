@@ -9,29 +9,29 @@
  * @packageDocumentation
  */
 
-import { invokeTauriCommand } from './helpers/tauri'
+import { invokeTauriCommand } from './helpers/tauri';
 
 interface ArgMatch {
-  /**
-   * string if takes value
-   * boolean if flag
-   * string[] or null if takes multiple values
-   */
-  value: string | boolean | string[] | null
-  /**
-   * Number of occurrences
-   */
-  occurrences: number
+	/**
+	 * string if takes value
+	 * boolean if flag
+	 * string[] or null if takes multiple values
+	 */
+	value: string | boolean | string[] | null;
+	/**
+	 * Number of occurrences
+	 */
+	occurrences: number;
 }
 
 interface SubcommandMatch {
-  name: string
-  matches: CliMatches
+	name: string;
+	matches: CliMatches;
 }
 
 interface CliMatches {
-  args: { [name: string]: ArgMatch }
-  subcommand: SubcommandMatch | null
+	args: { [name: string]: ArgMatch };
+	subcommand: SubcommandMatch | null;
 }
 
 /**
@@ -40,14 +40,14 @@ interface CliMatches {
  * @returns A promise resolving to the parsed arguments.
  */
 async function getMatches(): Promise<CliMatches> {
-  return invokeTauriCommand<CliMatches>({
-    __tauriModule: 'Cli',
-    message: {
-      cmd: 'cliMatches'
-    }
-  })
+	return invokeTauriCommand<CliMatches>({
+		__tauriModule: 'Cli',
+		message: {
+			cmd: 'cliMatches'
+		}
+	});
 }
 
-export type { ArgMatch, SubcommandMatch, CliMatches }
+export type { ArgMatch, SubcommandMatch, CliMatches };
 
-export { getMatches }
+export { getMatches };

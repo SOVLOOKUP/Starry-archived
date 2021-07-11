@@ -23,10 +23,10 @@
  * @packageDocumentation
  */
 
-import { invokeTauriCommand } from './helpers/tauri'
-import { transformCallback } from './tauri'
+import { invokeTauriCommand } from './helpers/tauri';
+import { transformCallback } from './tauri';
 
-export type ShortcutHandler = (shortcut: string) => void
+export type ShortcutHandler = (shortcut: string) => void;
 
 /**
  * Register a global shortcut.
@@ -35,18 +35,15 @@ export type ShortcutHandler = (shortcut: string) => void
  * @param handler Shortcut handler callback - takes the triggered shortcut as argument
  * @returns
  */
-async function register(
-  shortcut: string,
-  handler: ShortcutHandler
-): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'GlobalShortcut',
-    message: {
-      cmd: 'register',
-      shortcut,
-      handler: transformCallback(handler)
-    }
-  })
+async function register(shortcut: string, handler: ShortcutHandler): Promise<void> {
+	return invokeTauriCommand({
+		__tauriModule: 'GlobalShortcut',
+		message: {
+			cmd: 'register',
+			shortcut,
+			handler: transformCallback(handler)
+		}
+	});
 }
 
 /**
@@ -56,18 +53,15 @@ async function register(
  * @param handler Shortcut handler callback - takes the triggered shortcut as argument
  * @returns
  */
-async function registerAll(
-  shortcuts: string[],
-  handler: ShortcutHandler
-): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'GlobalShortcut',
-    message: {
-      cmd: 'registerAll',
-      shortcuts,
-      handler: transformCallback(handler)
-    }
-  })
+async function registerAll(shortcuts: string[], handler: ShortcutHandler): Promise<void> {
+	return invokeTauriCommand({
+		__tauriModule: 'GlobalShortcut',
+		message: {
+			cmd: 'registerAll',
+			shortcuts,
+			handler: transformCallback(handler)
+		}
+	});
 }
 
 /**
@@ -77,13 +71,13 @@ async function registerAll(
  * @returns A promise resolving to the state.
  */
 async function isRegistered(shortcut: string): Promise<boolean> {
-  return invokeTauriCommand({
-    __tauriModule: 'GlobalShortcut',
-    message: {
-      cmd: 'isRegistered',
-      shortcut
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'GlobalShortcut',
+		message: {
+			cmd: 'isRegistered',
+			shortcut
+		}
+	});
 }
 
 /**
@@ -93,13 +87,13 @@ async function isRegistered(shortcut: string): Promise<boolean> {
  * @returns
  */
 async function unregister(shortcut: string): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'GlobalShortcut',
-    message: {
-      cmd: 'unregister',
-      shortcut
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'GlobalShortcut',
+		message: {
+			cmd: 'unregister',
+			shortcut
+		}
+	});
 }
 
 /**
@@ -108,12 +102,12 @@ async function unregister(shortcut: string): Promise<void> {
  * @returns
  */
 async function unregisterAll(): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'GlobalShortcut',
-    message: {
-      cmd: 'unregisterAll'
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'GlobalShortcut',
+		message: {
+			cmd: 'unregisterAll'
+		}
+	});
 }
 
-export { register, registerAll, isRegistered, unregister, unregisterAll }
+export { register, registerAll, isRegistered, unregister, unregisterAll };

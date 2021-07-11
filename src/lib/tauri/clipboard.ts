@@ -9,7 +9,7 @@
  * @packageDocumentation
  */
 
-import { invokeTauriCommand } from './helpers/tauri'
+import { invokeTauriCommand } from './helpers/tauri';
 
 /**
  * Writes a plain text to the clipboard.
@@ -17,13 +17,13 @@ import { invokeTauriCommand } from './helpers/tauri'
  * @returns A promise indicating the success or failure of the operation.
  */
 async function writeText(text: string): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Clipboard',
-    message: {
-      cmd: 'writeText',
-      data: text
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Clipboard',
+		message: {
+			cmd: 'writeText',
+			data: text
+		}
+	});
 }
 
 /**
@@ -32,12 +32,12 @@ async function writeText(text: string): Promise<void> {
  * @returns A promise resolving to the clipboard content as plain text.
  */
 async function readText(): Promise<string | null> {
-  return invokeTauriCommand({
-    __tauriModule: 'Clipboard',
-    message: {
-      cmd: 'readText'
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Clipboard',
+		message: {
+			cmd: 'readText'
+		}
+	});
 }
 
-export { writeText, readText }
+export { writeText, readText };

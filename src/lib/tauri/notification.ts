@@ -24,22 +24,22 @@
  * @packageDocumentation
  */
 
-import { invokeTauriCommand } from './helpers/tauri'
+import { invokeTauriCommand } from './helpers/tauri';
 
 /**
  * Options to send a notification.
  */
 interface Options {
-  /** Notification title. */
-  title: string
-  /** Optional notification body. */
-  body?: string
-  /** Optional notification icon. */
-  icon?: string
+	/** Notification title. */
+	title: string;
+	/** Optional notification body. */
+	body?: string;
+	/** Optional notification icon. */
+	icon?: string;
 }
 
 /** Possible permission values. */
-type Permission = 'granted' | 'denied' | 'default'
+type Permission = 'granted' | 'denied' | 'default';
 
 /**
  * Checks if the permission to send notifications is granted.
@@ -47,15 +47,15 @@ type Permission = 'granted' | 'denied' | 'default'
  * @returns
  */
 async function isPermissionGranted(): Promise<boolean | null> {
-  if (window.Notification.permission !== 'default') {
-    return Promise.resolve(window.Notification.permission === 'granted')
-  }
-  return invokeTauriCommand({
-    __tauriModule: 'Notification',
-    message: {
-      cmd: 'isNotificationPermissionGranted'
-    }
-  })
+	if (window.Notification.permission !== 'default') {
+		return Promise.resolve(window.Notification.permission === 'granted');
+	}
+	return invokeTauriCommand({
+		__tauriModule: 'Notification',
+		message: {
+			cmd: 'isNotificationPermissionGranted'
+		}
+	});
 }
 
 /**
@@ -64,7 +64,7 @@ async function isPermissionGranted(): Promise<boolean | null> {
  * @returns A promise resolving to whether the user granted the permission or not.
  */
 async function requestPermission(): Promise<Permission> {
-  return window.Notification.requestPermission()
+	return window.Notification.requestPermission();
 }
 
 /**
@@ -73,15 +73,15 @@ async function requestPermission(): Promise<Permission> {
  * @param options Notification options.
  */
 function sendNotification(options: Options | string): void {
-  if (typeof options === 'string') {
-    // eslint-disable-next-line no-new
-    new window.Notification(options)
-  } else {
-    // eslint-disable-next-line no-new
-    new window.Notification(options.title, options)
-  }
+	if (typeof options === 'string') {
+		// eslint-disable-next-line no-new
+		new window.Notification(options);
+	} else {
+		// eslint-disable-next-line no-new
+		new window.Notification(options.title, options);
+	}
 }
 
-export type { Options, Permission }
+export type { Options, Permission };
 
-export { sendNotification, requestPermission, isPermissionGranted }
+export { sendNotification, requestPermission, isPermissionGranted };

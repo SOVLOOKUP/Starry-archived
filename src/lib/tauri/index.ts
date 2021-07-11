@@ -13,4 +13,4 @@
  * @packageDocumentation
  */
 
-export * from './bundle'
+export * from './bundle';

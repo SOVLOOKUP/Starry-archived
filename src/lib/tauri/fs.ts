@@ -33,58 +33,58 @@
  * @packageDocumentation
  */
 
-import { invokeTauriCommand } from './helpers/tauri'
+import { invokeTauriCommand } from './helpers/tauri';
 
 export enum BaseDirectory {
-  Audio = 1,
-  Cache,
-  Config,
-  Data,
-  LocalData,
-  Desktop,
-  Document,
-  Download,
-  Executable,
-  Font,
-  Home,
-  Picture,
-  Public,
-  Runtime,
-  Template,
-  Video,
-  Resource,
-  App,
-  Current
+	Audio = 1,
+	Cache,
+	Config,
+	Data,
+	LocalData,
+	Desktop,
+	Document,
+	Download,
+	Executable,
+	Font,
+	Home,
+	Picture,
+	Public,
+	Runtime,
+	Template,
+	Video,
+	Resource,
+	App,
+	Current
 }
 
 interface FsOptions {
-  dir?: BaseDirectory
+	dir?: BaseDirectory;
 }
 
 interface FsDirOptions {
-  dir?: BaseDirectory
-  recursive?: boolean
+	dir?: BaseDirectory;
+	recursive?: boolean;
 }
 
 interface FsTextFileOption {
-  path: string
-  contents: string
+	path: string;
+	contents: string;
 }
 
 interface FsBinaryFileOption {
-  path: string
-  contents: ArrayBuffer
+	path: string;
+	contents: ArrayBuffer;
 }
 
 interface FileEntry {
-  path: string
-  /**
-   * Name of the directory/file
-   * can be null if the path terminates with `..`
-   */
-  name?: string
-  /** Children of this entry if it's a directory; null otherwise */
-  children?: FileEntry[]
+	path: string;
+	/**
+	 * Name of the directory/file
+	 * can be null if the path terminates with `..`
+	 */
+	name?: string;
+	/** Children of this entry if it's a directory; null otherwise */
+	children?: FileEntry[];
 }
 
 /**
@@ -94,18 +94,15 @@ interface FileEntry {
  * @param options Configuration object.
  * @returns A promise resolving to the file content as a UTF-8 encoded string.
  */
-async function readTextFile(
-  filePath: string,
-  options: FsOptions = {}
-): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'readTextFile',
-      path: filePath,
-      options
-    }
-  })
+async function readTextFile(filePath: string, options: FsOptions = {}): Promise<string> {
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'readTextFile',
+			path: filePath,
+			options
+		}
+	});
 }
 
 /**
@@ -115,18 +112,15 @@ async function readTextFile(
  * @param options Configuration object.
  * @returns A promise resolving to the file bytes array.
  */
-async function readBinaryFile(
-  filePath: string,
-  options: FsOptions = {}
-): Promise<number[]> {
-  return invokeTauriCommand<number[]>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'readBinaryFile',
-      path: filePath,
-      options
-    }
-  })
+async function readBinaryFile(filePath: string, options: FsOptions = {}): Promise<number[]> {
+	return invokeTauriCommand<number[]>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'readBinaryFile',
+			path: filePath,
+			options
+		}
+	});
 }
 
 /**
@@ -136,30 +130,27 @@ async function readBinaryFile(
  * @param options Configuration object.
  * @returns A promise indicating the success or failure of the operation.
  */
-async function writeFile(
-  file: FsTextFileOption,
-  options: FsOptions = {}
-): Promise<void> {
-  if (typeof options === 'object') {
-    Object.freeze(options)
-  }
-  if (typeof file === 'object') {
-    Object.freeze(file)
-  }
+async function writeFile(file: FsTextFileOption, options: FsOptions = {}): Promise<void> {
+	if (typeof options === 'object') {
+		Object.freeze(options);
+	}
+	if (typeof file === 'object') {
+		Object.freeze(file);
+	}
 
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'writeFile',
-      path: file.path,
-      contents: file.contents,
-      options
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'writeFile',
+			path: file.path,
+			contents: file.contents,
+			options
+		}
+	});
 }
 
 /** @ignore */
-const CHUNK_SIZE = 65536
+const CHUNK_SIZE = 65536;
 
 /**
  * Convert an Uint8Array to ascii string.
@@ -169,17 +160,17 @@ const CHUNK_SIZE = 65536
  * @returns An ASCII string.
  */
 function uint8ArrayToString(arr: Uint8Array): string {
-  if (arr.length < CHUNK_SIZE) {
-    return String.fromCharCode.apply(null, Array.from(arr))
-  }
+	if (arr.length < CHUNK_SIZE) {
+		return String.fromCharCode.apply(null, Array.from(arr));
+	}
 
-  let result = ''
-  const arrLen = arr.length
-  for (let i = 0; i < arrLen; i++) {
-    const chunk = arr.subarray(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
-    result += String.fromCharCode.apply(null, Array.from(chunk))
-  }
-  return result
+	let result = '';
+	const arrLen = arr.length;
+	for (let i = 0; i < arrLen; i++) {
+		const chunk = arr.subarray(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
+		result += String.fromCharCode.apply(null, Array.from(chunk));
+	}
+	return result;
 }
 
 /**
@@ -190,8 +181,8 @@ function uint8ArrayToString(arr: Uint8Array): string {
  * @returns A base64 encoded string.
  */
 function arrayBufferToBase64(buffer: ArrayBuffer): string {
-  const str = uint8ArrayToString(new Uint8Array(buffer))
-  return btoa(str)
+	const str = uint8ArrayToString(new Uint8Array(buffer));
+	return btoa(str);
 }
 
 /**
@@ -201,26 +192,23 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
  * @param options Configuration object.
  * @returns A promise indicating the success or failure of the operation.
  */
-async function writeBinaryFile(
-  file: FsBinaryFileOption,
-  options: FsOptions = {}
-): Promise<void> {
-  if (typeof options === 'object') {
-    Object.freeze(options)
-  }
-  if (typeof file === 'object') {
-    Object.freeze(file)
-  }
+async function writeBinaryFile(file: FsBinaryFileOption, options: FsOptions = {}): Promise<void> {
+	if (typeof options === 'object') {
+		Object.freeze(options);
+	}
+	if (typeof file === 'object') {
+		Object.freeze(file);
+	}
 
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'writeBinaryFile',
-      path: file.path,
-      contents: arrayBufferToBase64(file.contents),
-      options
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'writeBinaryFile',
+			path: file.path,
+			contents: arrayBufferToBase64(file.contents),
+			options
+		}
+	});
 }
 
 /**
@@ -230,18 +218,15 @@ async function writeBinaryFile(
  * @param options Configuration object.
  * @returns A promise resolving to the directory entries.
  */
-async function readDir(
-  dir: string,
-  options: FsDirOptions = {}
-): Promise<FileEntry[]> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'readDir',
-      path: dir,
-      options
-    }
-  })
+async function readDir(dir: string, options: FsDirOptions = {}): Promise<FileEntry[]> {
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'readDir',
+			path: dir,
+			options
+		}
+	});
 }
 
 /**
@@ -253,18 +238,15 @@ async function readDir(
  * @param options Configuration object.
  * @returns A promise indicating the success or failure of the operation.
  */
-async function createDir(
-  dir: string,
-  options: FsDirOptions = {}
-): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'createDir',
-      path: dir,
-      options
-    }
-  })
+async function createDir(dir: string, options: FsDirOptions = {}): Promise<void> {
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'createDir',
+			path: dir,
+			options
+		}
+	});
 }
 
 /**
@@ -275,18 +257,15 @@ async function createDir(
  * @param options Configuration object.
  * @returns A promise indicating the success or failure of the operation.
  */
-async function removeDir(
-  dir: string,
-  options: FsDirOptions = {}
-): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'removeDir',
-      path: dir,
-      options
-    }
-  })
+async function removeDir(dir: string, options: FsDirOptions = {}): Promise<void> {
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'removeDir',
+			path: dir,
+			options
+		}
+	});
 }
 
 /**
@@ -298,19 +277,19 @@ async function removeDir(
  * @returns A promise indicating the success or failure of the operation.
  */
 async function copyFile(
-  source: string,
-  destination: string,
-  options: FsOptions = {}
+	source: string,
+	destination: string,
+	options: FsOptions = {}
 ): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'copyFile',
-      source,
-      destination,
-      options
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'copyFile',
+			source,
+			destination,
+			options
+		}
+	});
 }
 
 /**
@@ -320,18 +299,15 @@ async function copyFile(
  * @param options Configuration object.
  * @returns A promise indicating the success or failure of the operation.
  */
-async function removeFile(
-  file: string,
-  options: FsOptions = {}
-): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'removeFile',
-      path: file,
-      options: options
-    }
-  })
+async function removeFile(file: string, options: FsOptions = {}): Promise<void> {
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'removeFile',
+			path: file,
+			options: options
+		}
+	});
 }
 
 /**
@@ -343,39 +319,33 @@ async function removeFile(
  * @returns A promise indicating the success or failure of the operation.
  */
 async function renameFile(
-  oldPath: string,
-  newPath: string,
-  options: FsOptions = {}
+	oldPath: string,
+	newPath: string,
+	options: FsOptions = {}
 ): Promise<void> {
-  return invokeTauriCommand({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'renameFile',
-      oldPath,
-      newPath,
-      options
-    }
-  })
+	return invokeTauriCommand({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'renameFile',
+			oldPath,
+			newPath,
+			options
+		}
+	});
 }
 
-export type {
-  FsOptions,
-  FsDirOptions,
-  FsTextFileOption,
-  FsBinaryFileOption,
-  FileEntry
-}
+export type { FsOptions, FsDirOptions, FsTextFileOption, FsBinaryFileOption, FileEntry };
 
 export {
-  BaseDirectory as Dir,
-  readTextFile,
-  readBinaryFile,
-  writeFile,
-  writeBinaryFile,
-  readDir,
-  createDir,
-  removeDir,
-  copyFile,
-  removeFile,
-  renameFile
-}
+	BaseDirectory as Dir,
+	readTextFile,
+	readBinaryFile,
+	writeFile,
+	writeBinaryFile,
+	readDir,
+	createDir,
+	removeDir,
+	copyFile,
+	removeFile,
+	renameFile
+};

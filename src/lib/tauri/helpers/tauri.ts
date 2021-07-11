@@ -4,32 +4,32 @@
 
 /** @ignore */ /** */
 
-import { invoke } from '../tauri'
+import { invoke } from '../tauri';
 
 type TauriModule =
-  | 'App'
-  | 'Fs'
-  | 'Window'
-  | 'Shell'
-  | 'Event'
-  | 'Internal'
-  | 'Dialog'
-  | 'Cli'
-  | 'Notification'
-  | 'Http'
-  | 'GlobalShortcut'
-  | 'Process'
-  | 'Clipboard'
+	| 'App'
+	| 'Fs'
+	| 'Window'
+	| 'Shell'
+	| 'Event'
+	| 'Internal'
+	| 'Dialog'
+	| 'Cli'
+	| 'Notification'
+	| 'Http'
+	| 'GlobalShortcut'
+	| 'Process'
+	| 'Clipboard';
 
 interface TauriCommand {
-  __tauriModule: TauriModule
-  [key: string]: unknown
+	__tauriModule: TauriModule;
+	[key: string]: unknown;
 }
 
 async function invokeTauriCommand<T>(command: TauriCommand): Promise<T> {
-  return invoke('tauri', command)
+	return invoke('tauri', command);
 }
 
-export type { TauriModule, TauriCommand }
+export type { TauriModule, TauriCommand };
 
-export { invokeTauriCommand }
+export { invokeTauriCommand };

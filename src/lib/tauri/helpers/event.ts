@@ -4,7 +4,7 @@
 
 /** @ignore */ /** */
 
-import { invokeTauriCommand } from './tauri'
+import { invokeTauriCommand } from './tauri';
 
 /**
  * Emits an event to the backend.
@@ -14,20 +14,16 @@ import { invokeTauriCommand } from './tauri'
  * @param [payload] Event payload
  * @returns
  */
-async function emit(
-  event: string,
-  windowLabel?: string,
-  payload?: string
-): Promise<void> {
-  await invokeTauriCommand({
-    __tauriModule: 'Event',
-    message: {
-      cmd: 'emit',
-      event,
-      windowLabel,
-      payload
-    }
-  })
+async function emit(event: string, windowLabel?: string, payload?: string): Promise<void> {
+	await invokeTauriCommand({
+		__tauriModule: 'Event',
+		message: {
+			cmd: 'emit',
+			event,
+			windowLabel,
+			payload
+		}
+	});
 }
 
-export { emit }
+export { emit };

@@ -11,21 +11,21 @@
 
 /** @ignore */
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface Window {
-    rpc: {
-      notify: (command: string, args?: { [key: string]: unknown }) => void
-    }
-  }
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	interface Window {
+		rpc: {
+			notify: (command: string, args?: { [key: string]: unknown }) => void;
+		};
+	}
 }
 
 /** @ignore */
 function uid(): string {
-  const length = new Int8Array(1)
-  window.crypto.getRandomValues(length)
-  const array = new Uint8Array(Math.max(16, Math.abs(length[0])))
-  window.crypto.getRandomValues(array)
-  return array.join('')
+	const length = new Int8Array(1);
+	window.crypto.getRandomValues(length);
+	const array = new Uint8Array(Math.max(16, Math.abs(length[0])));
+	window.crypto.getRandomValues(array);
+	return array.join('');
 }
 
 /**
@@ -34,30 +34,27 @@ function uid(): string {
  *
  * @return A unique identifier associated with the callback function.
  */
-function transformCallback(
-  callback?: (response: any) => void,
-  once = false
-): string {
-  const identifier = uid()
+function transformCallback(callback?: (response: any) => void, once = false): string {
+	const identifier = uid();
 
-  Object.defineProperty(window, identifier, {
-    value: (result: any) => {
-      if (once) {
-        Reflect.deleteProperty(window, identifier)
-      }
+	Object.defineProperty(window, identifier, {
+		value: (result: any) => {
+			if (once) {
+				Reflect.deleteProperty(window, identifier);
+			}
 
-      return callback?.(result)
-    },
-    writable: false,
-    configurable: true
-  })
+			return callback?.(result);
+		},
+		writable: false,
+		configurable: true
+	});
 
-  return identifier
+	return identifier;
 }
 
 /** Command arguments. */
 interface InvokeArgs {
-  [key: string]: unknown
+	[key: string]: unknown;
 }
 
 /**
@@ -68,24 +65,24 @@ interface InvokeArgs {
  * @return A promise resolving or rejecting to the backend response.
  */
 async function invoke<T>(cmd: string, args: InvokeArgs = {}): Promise<T> {
-  return new Promise((resolve, reject) => {
-    const callback = transformCallback((e) => {
-      resolve(e)
-      Reflect.deleteProperty(window, error)
-    }, true)
-    const error = transformCallback((e) => {
-      reject(e)
-      Reflect.deleteProperty(window, callback)
-    }, true)
+	return new Promise((resolve, reject) => {
+		const callback = transformCallback((e) => {
+			resolve(e);
+			Reflect.deleteProperty(window, error);
+		}, true);
+		const error = transformCallback((e) => {
+			reject(e);
+			Reflect.deleteProperty(window, callback);
+		}, true);
 
-    window.rpc.notify(cmd, {
-      // @ts-expect-error the `__TAURI_INVOKE_KEY__` variable is injected at runtime by Tauri
-      __invokeKey: __TAURI_INVOKE_KEY__,
-      callback,
-      error,
-      ...args
-    })
-  })
+		window.rpc.notify(cmd, {
+			// @ts-expect-error the `__TAURI_INVOKE_KEY__` variable is injected at runtime by Tauri
+			__invokeKey: __TAURI_INVOKE_KEY__,
+			callback,
+			error,
+			...args
+		});
+	});
 }
 
 /**
@@ -97,11 +94,11 @@ async function invoke<T>(cmd: string, args: InvokeArgs = {}): Promise<T> {
  * @return the URL that can be used as source on the webview
  */
 function convertFileSrc(filePath: string): string {
-  return navigator.userAgent.includes('Windows')
-    ? `https://custom.protocol.asset_${filePath}`
-    : `asset://${filePath}`
+	return navigator.userAgent.includes('Windows')
+		? `https://custom.protocol.asset_${filePath}`
+		: `asset://${filePath}`;
 }
 
-export type { InvokeArgs }
+export type { InvokeArgs };
 
-export { transformCallback, invoke, convertFileSrc }
+export { transformCallback, invoke, convertFileSrc };

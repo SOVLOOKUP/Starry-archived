@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-License-Identifier: MIT
 
-import { invokeTauriCommand } from './helpers/tauri'
-import { BaseDirectory } from './fs'
+import { invokeTauriCommand } from './helpers/tauri';
+import { BaseDirectory } from './fs';
 
 /**
  * Read common system paths such as home, config and cache directories.
@@ -34,14 +34,14 @@ import { BaseDirectory } from './fs'
  * @returns
  */
 async function appDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.App
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.App
+		}
+	});
 }
 
 /**
@@ -56,14 +56,14 @@ async function appDir(): Promise<string> {
  * @returns
  */
 async function audioDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Audio
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Audio
+		}
+	});
 }
 
 /**
@@ -78,14 +78,14 @@ async function audioDir(): Promise<string> {
  * @returns
  */
 async function cacheDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Cache
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Cache
+		}
+	});
 }
 
 /**
@@ -100,14 +100,14 @@ async function cacheDir(): Promise<string> {
  * @returns
  */
 async function configDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Config
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Config
+		}
+	});
 }
 
 /**
@@ -122,14 +122,14 @@ async function configDir(): Promise<string> {
  * @returns
  */
 async function dataDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Data
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Data
+		}
+	});
 }
 
 /**
@@ -144,14 +144,14 @@ async function dataDir(): Promise<string> {
  * @returns
  */
 async function desktopDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Desktop
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Desktop
+		}
+	});
 }
 
 /**
@@ -166,14 +166,14 @@ async function desktopDir(): Promise<string> {
  * @returns
  */
 async function documentDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Document
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Document
+		}
+	});
 }
 
 /**
@@ -188,14 +188,14 @@ async function documentDir(): Promise<string> {
  * @returns
  */
 async function downloadDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Download
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Download
+		}
+	});
 }
 
 /**
@@ -210,14 +210,14 @@ async function downloadDir(): Promise<string> {
  * @returns
  */
 async function executableDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Executable
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Executable
+		}
+	});
 }
 
 /**
@@ -232,14 +232,14 @@ async function executableDir(): Promise<string> {
  * @returns
  */
 async function fontDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Font
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Font
+		}
+	});
 }
 
 /**
@@ -254,14 +254,14 @@ async function fontDir(): Promise<string> {
  * @returns
  */
 async function homeDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Home
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Home
+		}
+	});
 }
 
 /**
@@ -276,14 +276,14 @@ async function homeDir(): Promise<string> {
  * @returns
  */
 async function localDataDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.LocalData
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.LocalData
+		}
+	});
 }
 
 /**
@@ -298,14 +298,14 @@ async function localDataDir(): Promise<string> {
  * @returns
  */
 async function pictureDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Picture
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Picture
+		}
+	});
 }
 
 /**
@@ -320,14 +320,14 @@ async function pictureDir(): Promise<string> {
  * @returns
  */
 async function publicDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Public
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Public
+		}
+	});
 }
 
 /**
@@ -336,14 +336,14 @@ async function publicDir(): Promise<string> {
  * @returns
  */
 async function resourceDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Resource
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Resource
+		}
+	});
 }
 
 /**
@@ -358,14 +358,14 @@ async function resourceDir(): Promise<string> {
  * @returns
  */
 async function runtimeDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Runtime
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Runtime
+		}
+	});
 }
 
 /**
@@ -380,14 +380,14 @@ async function runtimeDir(): Promise<string> {
  * @returns
  */
 async function templateDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Template
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Template
+		}
+	});
 }
 
 /**
@@ -402,14 +402,14 @@ async function templateDir(): Promise<string> {
  * @returns
  */
 async function videoDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Video
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Video
+		}
+	});
 }
 
 /**
@@ -418,14 +418,14 @@ async function videoDir(): Promise<string> {
  * @returns
  */
 async function currentDir(): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path: '',
-      directory: BaseDirectory.Current
-    }
-  })
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path: '',
+			directory: BaseDirectory.Current
+		}
+	});
 }
 
 /**
@@ -435,40 +435,37 @@ async function currentDir(): Promise<string> {
  * @param directory A base directory to use when resolving the given path
  * @returns A path resolved to the given base directory.
  */
-async function resolvePath(
-  path: string,
-  directory: BaseDirectory
-): Promise<string> {
-  return invokeTauriCommand<string>({
-    __tauriModule: 'Fs',
-    message: {
-      cmd: 'resolvePath',
-      path,
-      directory
-    }
-  })
+async function resolvePath(path: string, directory: BaseDirectory): Promise<string> {
+	return invokeTauriCommand<string>({
+		__tauriModule: 'Fs',
+		message: {
+			cmd: 'resolvePath',
+			path,
+			directory
+		}
+	});
 }
 
 export {
-  appDir,
-  audioDir,
-  cacheDir,
-  configDir,
-  dataDir,
-  desktopDir,
-  documentDir,
-  downloadDir,
-  executableDir,
-  fontDir,
-  homeDir,
-  localDataDir,
-  pictureDir,
-  publicDir,
-  resourceDir,
-  runtimeDir,
-  templateDir,
-  videoDir,
-  currentDir,
-  resolvePath,
-  BaseDirectory
-}
+	appDir,
+	audioDir,
+	cacheDir,
+	configDir,
+	dataDir,
+	desktopDir,
+	documentDir,
+	downloadDir,
+	executableDir,
+	fontDir,
+	homeDir,
+	localDataDir,
+	pictureDir,
+	publicDir,
+	resourceDir,
+	runtimeDir,
+	templateDir,
+	videoDir,
+	currentDir,
+	resolvePath,
+	BaseDirectory
+};
