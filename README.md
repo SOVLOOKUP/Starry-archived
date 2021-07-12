@@ -1,23 +1,50 @@
 <div align="center">
-  <h1>✨Starries ｜ 繁星✨</h1>
-  <text>分布式插件生态系统</text>
+    <h1>✨Starry ｜ 繁星✨</h1>
+    <ul>去中心化生态系统</ul>
+    <ul>构建全端跨平台生态，一次编写全端运行，并能通过加载插件拓展 API </ul>
 <!--   <a href="https://codecov.io/gh/SOVLOOKUP/starry">
     <img src="https://codecov.io/gh/SOVLOOKUP/starry/branch/master/graph/badge.svg?token=gtYREOVInH"/>
   </a> -->
 </div>
 
----
+## 特性
 
-1. [ ] 类似小程序的应用部署安装体验
-2. [ ] 基于 esm + cdn 的应用市场
+- 使用 Rust 实现 API
+- 一切皆插件
+- 完全开源
+- 兼容 PWA、utools 等应用
+- 安全
+- 去中心化插件市场
+- 极小的安装文件 < 10M
 
-## Features
 
-- Decentralized
-- Open plugin system
-- Fast and convenient
+## 兼容性
 
-## Prepare
+Tauri 规范是我们推荐的 API 规范，但是我们还计划兼容以下规范:
+
+- [ ] Tauri
+- [ ] PWA
+- [ ] utools
+- [ ] uniapp
+
+平台适配情况:
+
+- [x] Windows
+
+- [x] Macos
+
+- [x] Linux
+
+- [ ] Andorid
+- [ ] IOS
+
+## Todo
+
+- [ ] Rust plugin extend
+
+## Contribution
+
+### Prepare
 
 1. rust cargo
 
@@ -27,7 +54,7 @@
 
 `npm run install`
 
-## Develop
+### Develop
 
 1. Browser
 
@@ -35,19 +62,9 @@
 
 2. Tauri desktop
 
-`npm run tauri:dev` or `cargo tauri dev`
+`npm run start`
 
-## Build
-
-1. Output static dist
-
-`npm run build`
-
-2. Bundle release
-
-`npm run release` or `cargo tauri build`
-
-## Anti Bloat
+### Anti Bloat
 
 compress to at most 959KB
 
@@ -59,6 +76,6 @@ upx --lzma your-app
 
 ## Credit
 
-- [svelte kit](https://kit.svelte.dev/) as framework
-- [tauri](https://tauri.studio/) as frontend
-- [starry](https://github.com/SOVLOOKUP/starry) as backend
+- [svelte kit](https://kit.svelte.dev/)
+- [tauri](https://tauri.studio/)
+
