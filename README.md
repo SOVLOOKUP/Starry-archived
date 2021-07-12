@@ -17,7 +17,6 @@
 - 去中心化插件市场
 - 极小的安装文件 < 10M
 
-
 ## 兼容性
 
 Tauri 规范是我们推荐的 API 规范，但是我们还计划兼容以下规范:
@@ -78,4 +77,3 @@ upx --lzma your-app
 
 - [svelte kit](https://kit.svelte.dev/)
 - [tauri](https://tauri.studio/)
-
