@@ -77,3 +77,9 @@ upx --lzma your-app
 
 - [svelte kit](https://kit.svelte.dev/)
 - [tauri](https://tauri.studio/)
+
+## LICENSE
+
+LGPL v2
+
+CopyRight Xiafan 2021
